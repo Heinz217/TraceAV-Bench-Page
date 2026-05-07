@@ -50,6 +50,12 @@ function copyBibTeX() {
   });
 }
 
+// ------- Mobile nav toggle -------
+function toggleNav() {
+  var el = document.getElementById('tav-nav-links');
+  if (el) el.classList.toggle('is-open');
+}
+
 // ------- Scroll to top -------
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });

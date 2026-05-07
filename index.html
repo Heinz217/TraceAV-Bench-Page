@@ -77,8 +77,33 @@
 
   <main id="main-content">
 
+  <!-- =============== NAVBAR =============== -->
+  <nav class="tav-navbar" aria-label="Primary">
+    <div class="tav-nav-inner">
+      <a class="tav-nav-brand" href="#top">
+        <span class="tav-nav-logo">T</span>
+        TraceAV-Bench
+      </a>
+      <button class="tav-nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="tav-nav-links" id="tav-nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#taxonomy">Tasks</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#findings">Findings</a>
+        <a href="#data">Data</a>
+        <a href="#BibTeX">BibTeX</a>
+        <a class="nav-cta" href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">
+          <i class="fab fa-github"></i>&nbsp;GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
   <!-- =============== HERO =============== -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -97,10 +122,10 @@
               <span class="author-block">Bohan Zeng<sup>3</sup>,</span>
               <span class="author-block">Meiyi Qiang<sup>3</sup>,</span>
               <br>
-              <span class="author-block"><b>Zhengyang Zhao<sup>3</sup></b>,</span>
-              <span class="author-block"><b>Zimo Meng<sup>3</sup></b>,</span>
-              <span class="author-block"><b>Zeang Sheng<sup>3</sup></b>,</span>
-              <span class="author-block"><b>Wentao Zhang<sup>3</sup></b><sup>&dagger;</sup></span>
+              <span class="author-block">Zhengyang Zhao<sup>3</sup>,</span>
+              <span class="author-block">Zimo Meng<sup>3</sup>,</span>
+              <span class="author-block">Zeang Sheng<sup>3</sup>,</span>
+              <span class="author-block">Wentao Zhang<sup>3</sup><sup>&dagger;</sup></span>
             </div>
 
             <div class="is-size-6 publication-authors">
@@ -200,27 +225,24 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <!-- TODO: replace with a teaser video/figure for TraceAV-Bench -->
         <figure class="image teaser-figure">
-          <img src="static/images/teaser_placeholder.png"
-               alt="TraceAV-Bench teaser: a multi-hop audio-visual trajectory illustration"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="teaser-fallback" style="display:none;">
-            <i class="fas fa-image"></i>
-            <span>Place <code>static/images/teaser_placeholder.png</code> (recommended: a figure showing one trajectory-grounded QA example with time-stamped visual/audio hops).</span>
-          </div>
+          <img src="asset/question.png"
+               alt="TraceAV-Bench teaser: two QA examples grounded in multi-hop audio-visual trajectories" />
         </figure>
-        <h2 class="subtitle has-text-centered">
-          Each <b>TraceAV-Bench</b> question is grounded in an explicit multi-hop evidence trajectory,
-          where reasoning chains are distributed across temporally distant, cross-modal clues in long videos
-          (avg. <b>3.68 hops</b> spanning <b>15.1&nbsp;minutes</b>).
-        </h2>
+        <p class="teaser-caption has-text-centered">
+          Two representative <b>TraceAV-Bench</b> questions, each grounded in an explicit multi-hop evidence
+          trajectory whose hops are tagged with their source modality.
+          <b>Top</b>: <i>Temporal Sequencing</i> (AVR) — chronologically ordering four events by chaining
+          speech and on-screen cues.
+          <b>Bottom</b>: <i>Temporal Splicing Fallacy</i> (MH) — rejecting a fabricated narrative that
+          splices temporally isolated events into a false ownership timeline.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- =============== ABSTRACT =============== -->
-  <section class="section hero is-light">
+  <section class="section hero is-light" id="abstract">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -294,7 +316,7 @@
   </section>
 
   <!-- =============== TASK TAXONOMY =============== -->
-  <section class="section hero is-light">
+  <section class="section hero is-light" id="taxonomy">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Task Taxonomy</h2>
       <p class="has-text-centered" style="margin-bottom: 1.5rem;">
@@ -364,8 +386,39 @@
     </div>
   </section>
 
+  <!-- =============== DATASET STATISTICS =============== -->
+  <section class="section" id="stats">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Dataset Statistics</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+        578 long videos (339.5 h) spanning 5 top-level genres and 30+ sub-genres,
+        with durations overwhelmingly beyond 10 minutes.
+      </p>
+
+      <div class="stats-grid">
+        <figure class="stats-figure">
+          <img src="asset/sunburst.png" alt="Video category distribution (sunburst chart)" />
+          <figcaption>
+            <b>Video category distribution.</b> Our corpus covers 5 top-level genres
+            — Knowledge &amp; Information, Lifestyle &amp; Leisure, Film &amp; TV,
+            Sports, and Arts &amp; Performance — with 30+ fine-grained sub-genres
+            ensuring broad topical diversity.
+          </figcaption>
+        </figure>
+        <figure class="stats-figure">
+          <img src="asset/benchmark.png" alt="Video duration distribution histogram and bucket counts" />
+          <figcaption>
+            <b>Video duration distribution.</b> All videos are ≥ 10 min; 40.8% fall
+            in the 25–45 min bucket, 17.5% are 45–60 min, and 7.4% exceed 1 hour,
+            demonstrating TraceAV-Bench's ultra-long-form nature.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- =============== CONSTRUCTION PIPELINE =============== -->
-  <section class="section">
+  <section class="section hero is-light" id="pipeline">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Benchmark Construction Pipeline</h2>
       <p class="has-text-centered" style="margin-bottom: 1.5rem;">
@@ -373,13 +426,8 @@
       </p>
 
       <figure class="image pipeline-figure">
-        <img src="static/images/pipeline.png"
-             alt="TraceAV-Bench construction pipeline"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="pipeline-fallback" style="display:none;">
-          <i class="fas fa-image"></i>
-          <span>Place <code>static/images/pipeline.png</code> (pipeline overview figure).</span>
-        </div>
+        <img src="asset/overview.png"
+             alt="TraceAV-Bench construction pipeline overview" />
       </figure>
 
       <div class="pipeline-steps">
@@ -610,8 +658,8 @@
       <!-- Hallucination leaderboard -->
       <h3 class="title is-4 has-text-centered" style="margin-top:3rem;">Hallucination Robustness (MH Dimension)</h3>
       <p class="has-text-centered" style="margin-bottom: 1rem;">
-        Models are sorted by MH&nbsp;Avg within each group.
-        <b>Rank (MH&rarr;Gen.)</b> reveals the decoupling between hallucination robustness and general reasoning.
+        Accuracy (%) on the 3 Multimodal Hallucination sub-tasks. Models are sorted by <b>MH Avg</b>
+        within each group; <b>Gen. Avg</b> is the average accuracy on the 12 general sub-tasks above.
       </p>
 
       <div class="leaderboard-wrapper">
@@ -625,72 +673,71 @@
               <th>TSF</th>
               <th>MH Avg</th>
               <th>Gen. Avg</th>
-              <th>Rank (MH&rarr;Gen.)</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="lb-section"><td colspan="8">Closed-source OmniLLMs</td></tr>
+            <tr class="lb-section"><td colspan="7">Closed-source OmniLLMs</td></tr>
             <tr>
               <td>1</td><td class="lb-model">Gemini 3.1 Pro</td>
-              <td class="best">89.57</td><td>79.91</td><td class="best">84.34</td><td class="best">84.61</td><td class="best">68.29</td><td>1 → 1</td>
+              <td class="best">89.57</td><td>79.91</td><td class="best">84.34</td><td class="best">84.61</td><td class="best">68.29</td>
             </tr>
             <tr>
               <td>2</td><td class="lb-model">Gemini 3 Flash</td>
-              <td>76.52</td><td>75.55</td><td>87.35</td><td>79.81</td><td>62.28</td><td>2 → 3</td>
+              <td>76.52</td><td>75.55</td><td>87.35</td><td>79.81</td><td>62.28</td>
             </tr>
             <tr>
               <td>3</td><td class="lb-model">Gemini 2 Flash</td>
-              <td>74.78</td><td class="best">81.66</td><td>77.11</td><td>77.85</td><td>51.59</td><td>3 → 5</td>
+              <td>74.78</td><td class="best">81.66</td><td>77.11</td><td>77.85</td><td>51.59</td>
             </tr>
             <tr>
               <td>4</td><td class="lb-model">Gemini 2.5 Pro</td>
-              <td>79.13</td><td>74.24</td><td>75.90</td><td>76.42</td><td>63.52</td><td>4 → 2</td>
+              <td>79.13</td><td>74.24</td><td>75.90</td><td>76.42</td><td>63.52</td>
             </tr>
             <tr>
               <td>5</td><td class="lb-model">Gemini 2.5 Flash</td>
-              <td>60.87</td><td>66.81</td><td>66.87</td><td>64.85</td><td>59.04</td><td>5 → 4</td>
+              <td>60.87</td><td>66.81</td><td>66.87</td><td>64.85</td><td>59.04</td>
             </tr>
 
-            <tr class="lb-section"><td colspan="8">Open-source OmniLLMs</td></tr>
+            <tr class="lb-section"><td colspan="7">Open-source OmniLLMs</td></tr>
             <tr>
               <td>1</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
-              <td>65.65</td><td>69.87</td><td class="os-best">66.87</td><td class="os-best">67.46</td><td>48.43</td><td>1 → 2</td>
+              <td>65.65</td><td>69.87</td><td class="os-best">66.87</td><td class="os-best">67.46</td><td>48.43</td>
             </tr>
             <tr>
               <td>2</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
-              <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td class="os-best">51.70</td><td>2 → 1</td>
+              <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td class="os-best">51.70</td>
             </tr>
             <tr>
               <td>3</td><td class="lb-model">Gemma 4-E4B</td>
-              <td class="os-best">74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td><td>3 → 6</td>
+              <td class="os-best">74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td>
             </tr>
             <tr>
               <td>4</td><td class="lb-model">MiniCPM-o 4.5</td>
-              <td>70.87</td><td class="os-best">72.05</td><td>56.63</td><td>66.52</td><td>44.83</td><td>4 → 4</td>
+              <td>70.87</td><td class="os-best">72.05</td><td>56.63</td><td>66.52</td><td>44.83</td>
             </tr>
             <tr>
               <td>5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
-              <td>60.43</td><td>55.46</td><td>53.61</td><td>56.50</td><td>42.06</td><td>5 → 5</td>
+              <td>60.43</td><td>55.46</td><td>53.61</td><td>56.50</td><td>42.06</td>
             </tr>
             <tr>
               <td>6</td><td class="lb-model">OmniVinci-9B</td>
-              <td>42.17</td><td>44.10</td><td>42.17</td><td>42.81</td><td>47.38</td><td>6 → 3</td>
+              <td>42.17</td><td>44.10</td><td>42.17</td><td>42.81</td><td>47.38</td>
             </tr>
             <tr>
               <td>7</td><td class="lb-model">Video-SALMONN 2</td>
-              <td>45.65</td><td>39.30</td><td>37.95</td><td>40.97</td><td>38.63</td><td>7 → 7</td>
+              <td>45.65</td><td>39.30</td><td>37.95</td><td>40.97</td><td>38.63</td>
             </tr>
             <tr>
               <td>8</td><td class="lb-model">HumanOmni-7B</td>
-              <td>33.91</td><td>37.99</td><td>28.31</td><td>33.40</td><td>38.50</td><td>8 → 8</td>
+              <td>33.91</td><td>37.99</td><td>28.31</td><td>33.40</td><td>38.50</td>
             </tr>
             <tr>
               <td>9</td><td class="lb-model">Baichuan-Omni-1.5</td>
-              <td>28.26</td><td>41.48</td><td>22.29</td><td>30.68</td><td>26.91</td><td>9 → 10</td>
+              <td>28.26</td><td>41.48</td><td>22.29</td><td>30.68</td><td>26.91</td>
             </tr>
             <tr>
               <td>10</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
-              <td>35.22</td><td>29.69</td><td>19.88</td><td>28.26</td><td>30.43</td><td>10 → 9</td>
+              <td>35.22</td><td>29.69</td><td>19.88</td><td>28.26</td><td>30.43</td>
             </tr>
           </tbody>
         </table>
@@ -705,8 +752,52 @@
     </div>
   </section>
 
+  <!-- =============== KEY FINDINGS =============== -->
+  <section class="section" id="findings">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Key Findings</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+        Fine-grained analyses on TraceAV-Bench reveal persistent failure patterns of current OmniLLMs
+        along reasoning depth, evidence position, and cross-modal reliability.
+      </p>
+
+      <figure class="image findings-figure">
+        <img src="asset/findings.png"
+             alt="TraceAV-Bench key findings: hop degradation, primacy bias, error entropy, and MH vs Gen correlation" />
+      </figure>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-tag">(a)</div>
+          <h4>Multi-hop degradation</h4>
+          <p>Accuracy drops consistently as the required reasoning trajectory lengthens
+            (<b>2–4 hops → 5+ hops</b>), with only the strongest models maintaining small gaps.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-tag">(b)</div>
+          <h4>Primacy bias</h4>
+          <p>Models are systematically more accurate when the first evidence hop lies
+            early (0–20%) in the video than late (≥40%) — a <b>+3.7~+18.3%</b> gap across all models.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-tag">(c)</div>
+          <h4>Error-entropy scaling</h4>
+          <p>Error distributions converge as comprehension accuracy grows
+            (<b>Pearson r = 0.726</b>): weaker models fail in diverse ways,
+            stronger models fail on a shared set of hard questions.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-tag">(d)</div>
+          <h4>MH ⟂ comprehension</h4>
+          <p>Per-model correlation between hallucination robustness and general reasoning is
+            near zero — <b>MH robustness is largely decoupled</b> from general multimodal ability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- =============== DATA FORMAT / DOWNLOAD =============== -->
-  <section class="section">
+  <section class="section hero is-light" id="data">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Data &amp; Usage</h2>
 

@@ -31,13 +31,114 @@ body {
 }
 
 .publication-authors { margin-top: 1rem; }
-.publication-authors .author-block { margin: 0 0.2rem; }
+.publication-authors .author-block {
+  margin: 0 0.2rem;
+  font-weight: 400;   /* no bold for author names */
+}
+.publication-authors .author-block b,
+.publication-authors .author-block strong { font-weight: 400; }
 
 .disabled-link {
   opacity: 0.65;
   pointer-events: none;
   cursor: not-allowed;
 }
+
+/* ===== top navbar ===== */
+.tav-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--tav-border);
+}
+.tav-navbar .tav-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tav-nav-brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--tav-primary) !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.tav-nav-brand .tav-nav-logo {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #1f4e79, #7c3aed);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.tav-nav-links {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tav-nav-links a {
+  color: #344054;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+}
+.tav-nav-links a:hover {
+  color: var(--tav-primary-2);
+  border-bottom-color: var(--tav-primary-2);
+}
+.tav-nav-links a.nav-cta {
+  background: var(--tav-primary);
+  color: #fff !important;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border-bottom: 0;
+}
+.tav-nav-links a.nav-cta:hover {
+  background: var(--tav-primary-2);
+}
+.tav-nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-size: 1.3rem;
+  color: #344054;
+  cursor: pointer;
+}
+@media (max-width: 860px) {
+  .tav-nav-links { display: none; }
+  .tav-nav-links.is-open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #fff;
+    padding: 0.8rem 1.2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--tav-border);
+  }
+  .tav-nav-toggle { display: inline-block; }
+}
+
+/* anchor offset under sticky nav */
+section[id] { scroll-margin-top: 72px; }
 
 /* ===== key stats strip ===== */
 .key-stats {
@@ -67,10 +168,88 @@ body {
 }
 
 /* ===== teaser / pipeline figure ===== */
-.teaser-figure, .pipeline-figure {
+.teaser-figure, .pipeline-figure, .findings-figure, .stats-figure {
   margin: 0 auto;
   text-align: center;
 }
+.teaser-figure img, .pipeline-figure img, .findings-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(16, 24, 40, 0.08);
+  border: 1px solid var(--tav-border);
+  background: #fff;
+}
+.teaser-caption {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #475467;
+  line-height: 1.55;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== dataset stats (sunburst + histogram) ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.stats-figure img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--tav-border);
+  background: #fff;
+}
+.stats-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #475467;
+  line-height: 1.5;
+  text-align: left;
+}
+@media (max-width: 820px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== key findings ===== */
+.findings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+.finding-card {
+  background: #fff;
+  border: 1px solid var(--tav-border);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  position: relative;
+}
+.finding-card .finding-tag {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.85rem;
+  color: var(--tav-primary-2);
+  font-weight: 700;
+}
+.finding-card h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #101828;
+  padding-right: 2rem;
+}
+.finding-card p {
+  font-size: 0.88rem;
+  color: #475467;
+  line-height: 1.55;
+}
+
 .teaser-fallback, .pipeline-fallback {
   border: 2px dashed var(--tav-border);
   background: var(--tav-bg-soft);
