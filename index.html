@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="TraceAV-Bench: Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos">
+  <meta name="description" content="TraceAV-Bench is the first benchmark to jointly stress multi-hop reasoning over long audio-visual trajectories and multimodal hallucination robustness, with 2,200 rigorously validated questions over 578 long videos (339.5 hours).">
+  <meta name="keywords" content="TraceAV-Bench, audio-visual, benchmark, long video understanding, multi-hop reasoning, multimodal hallucination, OmniLLM, Omnimodal, MLLM, trajectory reasoning">
+  <meta name="author" content="Hengyi Feng, Hao Liang, Mingrui Chen, Bohan Zeng, Meiyi Qiang, Zhengyang Zhao, Zimo Meng, Zeang Sheng, Wentao Zhang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TraceAV-Bench">
+  <meta property="og:title" content="TraceAV-Bench: Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos">
+  <meta property="og:description" content="The first benchmark to jointly evaluate multi-hop reasoning over long audio-visual trajectories and multimodal hallucination robustness.">
+  <meta property="og:url" content="https://heinz217.github.io/TraceAV-Bench/">
+  <meta property="og:image" content="static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TraceAV-Bench: Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos">
+  <meta name="twitter:description" content="The first benchmark to jointly evaluate multi-hop reasoning over long audio-visual trajectories and multimodal hallucination robustness.">
+  <meta name="twitter:image" content="static/images/social_preview.png">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="TraceAV-Bench: Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos">
+  <meta name="citation_author" content="Feng, Hengyi">
+  <meta name="citation_author" content="Liang, Hao">
+  <meta name="citation_author" content="Chen, Mingrui">
+  <meta name="citation_author" content="Zeng, Bohan">
+  <meta name="citation_author" content="Qiang, Meiyi">
+  <meta name="citation_author" content="Zhao, Zhengyang">
+  <meta name="citation_author" content="Meng, Zimo">
+  <meta name="citation_author" content="Sheng, Zeang">
+  <meta name="citation_author" content="Zhang, Wentao">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="arXiv preprint">
+  <!-- TODO: update arxiv pdf link once available -->
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/XXXX.XXXXX.pdf">
+
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>TraceAV-Bench: Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/traceav.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/traceav.js"></script>
+</head>
+<body>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+
+  <!-- =============== HERO =============== -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="traceav-brand">TraceAV-Bench</span>
+            </h1>
+            <h2 class="subtitle is-4 publication-subtitle">
+              Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos
+            </h2>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Hengyi Feng<sup>1</sup><sup>*</sup>,</span>
+              <span class="author-block">Hao Liang<sup>2</sup><sup>*</sup>,</span>
+              <span class="author-block">Mingrui Chen<sup>1</sup>,</span>
+              <span class="author-block">Bohan Zeng<sup>3</sup>,</span>
+              <span class="author-block">Meiyi Qiang<sup>3</sup>,</span>
+              <br>
+              <span class="author-block"><b>Zhengyang Zhao<sup>3</sup></b>,</span>
+              <span class="author-block"><b>Zimo Meng<sup>3</sup></b>,</span>
+              <span class="author-block"><b>Zeang Sheng<sup>3</sup></b>,</span>
+              <span class="author-block"><b>Wentao Zhang<sup>3</sup></b><sup>&dagger;</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>Institution One &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>2</sup>Institution Two &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>3</sup>Institution Three</span>
+              <br>
+              <span class="eql-cntrb"><small><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding author</small></span>
+            </div>
+
+            <div class="column has-text-centered" style="margin-top: 1.2rem;">
+              <div class="publication-links">
+                <!-- arXiv (placeholder) -->
+                <span class="link-block">
+                  <a href="#" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark disabled-link"
+                    title="arXiv link coming soon">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv (coming soon)</span>
+                  </a>
+                </span>
+
+                <!-- Paper PDF (placeholder) -->
+                <span class="link-block">
+                  <a href="#" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark disabled-link"
+                    title="Paper PDF coming soon">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (coming soon)</span>
+                  </a>
+                </span>
+
+                <!-- GitHub code -->
+                <span class="link-block">
+                  <a href="https://github.com/Heinz217/TraceAV-Bench" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- HuggingFace Dataset (placeholder) -->
+                <span class="link-block">
+                  <a href="#" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark disabled-link"
+                    title="HuggingFace dataset coming soon">
+                    <span class="icon">🤗</span>
+                    <span>Dataset (coming soon)</span>
+                  </a>
+                </span>
+
+                <!-- Leaderboard jump -->
+                <span class="link-block">
+                  <a href="#leaderboard"
+                    class="external-link button is-normal is-rounded is-primary">
+                    <span class="icon"><i class="fas fa-trophy"></i></span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <!-- Key stats strip -->
+            <div class="key-stats">
+              <div class="stat-card">
+                <div class="stat-value">2,200</div>
+                <div class="stat-label">Questions</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">578</div>
+                <div class="stat-label">Long Videos</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">339.5 h</div>
+                <div class="stat-label">Total Duration</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">3.68</div>
+                <div class="stat-label">Avg. Hops / Q</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">15.1 min</div>
+                <div class="stat-label">Avg. Temporal Span</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Sub-Tasks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== TEASER =============== -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- TODO: replace with a teaser video/figure for TraceAV-Bench -->
+        <figure class="image teaser-figure">
+          <img src="static/images/teaser_placeholder.png"
+               alt="TraceAV-Bench teaser: a multi-hop audio-visual trajectory illustration"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="teaser-fallback" style="display:none;">
+            <i class="fas fa-image"></i>
+            <span>Place <code>static/images/teaser_placeholder.png</code> (recommended: a figure showing one trajectory-grounded QA example with time-stamped visual/audio hops).</span>
+          </div>
+        </figure>
+        <h2 class="subtitle has-text-centered">
+          Each <b>TraceAV-Bench</b> question is grounded in an explicit multi-hop evidence trajectory,
+          where reasoning chains are distributed across temporally distant, cross-modal clues in long videos
+          (avg. <b>3.68 hops</b> spanning <b>15.1&nbsp;minutes</b>).
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ABSTRACT =============== -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Real-world audio-visual understanding requires chaining evidence that is sparse, temporally
+              dispersed, and split across the visual and auditory streams, whereas existing benchmarks
+              largely fail to evaluate this capability. They restrict videos to short clips, isolate
+              modalities, or reduce questions to one-hop perception.
+            </p>
+            <p>
+              We introduce <b>TraceAV-Bench</b>, the first benchmark to jointly evaluate
+              <i>multi-hop reasoning over long audio-visual trajectories</i> and
+              <i>multimodal hallucination robustness</i>. TraceAV-Bench comprises <b>2,200</b> rigorously
+              validated multiple-choice questions over <b>578</b> long videos totaling <b>339.5&nbsp;hours</b>,
+              spanning <b>4 evaluation dimensions</b> and <b>15 sub-tasks</b>. Each question is grounded in an
+              explicit reasoning chain that averages <b>3.68 hops</b> across a <b>15.1-minute</b> temporal span.
+              The dataset is built by a three-step semi-automated pipeline followed by a strict quality
+              assurance process.
+            </p>
+            <p>
+              Evaluation of multiple representative OmniLLMs reveals that TraceAV-Bench poses a persistent
+              challenge across all models, with the strongest closed-source model (<b>Gemini&nbsp;3.1&nbsp;Pro</b>)
+              reaching only <b>68.29%</b> on general tasks, and the best open-source model
+              (<b>Ming-Flash-Omni-2.0</b>) reaching <b>51.70%</b>, leaving substantial headroom. Moreover,
+              robustness to multimodal hallucination is largely <i>decoupled</i> from general multimodal
+              reasoning performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== HIGHLIGHTS =============== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Key Features</h2>
+      <div class="columns is-multiline is-centered highlights-grid">
+        <div class="column is-one-quarter">
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-stopwatch"></i></div>
+            <h3>Ultra-Long Videos</h3>
+            <p>606–8394 s per video (avg. 2,112 s / ~35 min). Only benchmark with avg. duration beyond 30 min.</p>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-route"></i></div>
+            <h3>Multi-Hop Trajectories</h3>
+            <p>Every question grounded in an explicit evidence chain of temporally dispersed, cross-modal hops.</p>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>4 Dims × 15 Tasks</h3>
+            <p>Covering Audio-Visual Joint Reasoning, Visual- and Audio-Centric Reasoning, and Hallucination.</p>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="highlight-card">
+            <div class="highlight-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Hallucination Stress Test</h3>
+            <p>Dedicated MH dimension: V2A deception, A2V deception, and temporal splicing fallacy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== TASK TAXONOMY =============== -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Task Taxonomy</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+        TraceAV-Bench organizes 15 sub-tasks under 4 evaluation dimensions.
+      </p>
+
+      <div class="taxonomy">
+        <!-- AVR -->
+        <div class="tax-group">
+          <div class="tax-header tax-avr">
+            <span class="tax-tag">AVR</span>
+            <span class="tax-name">Audio-Visual Joint Reasoning</span>
+            <span class="tax-count">7 tasks · 835 Qs</span>
+          </div>
+          <div class="tax-list">
+            <div class="tax-item"><b>IR</b> Information Retrieval</div>
+            <div class="tax-item"><b>TS</b> Temporal Sequencing</div>
+            <div class="tax-item"><b>ET</b> Entity Tracking</div>
+            <div class="tax-item"><b>FCR</b> Forward Causal Reasoning</div>
+            <div class="tax-item"><b>BCR</b> Backward Causal Reasoning</div>
+            <div class="tax-item"><b>CMM</b> Cross-Modality Matching</div>
+            <div class="tax-item"><b>SL</b> Spatiotemporal Localization</div>
+          </div>
+        </div>
+
+        <!-- VR -->
+        <div class="tax-group">
+          <div class="tax-header tax-vr">
+            <span class="tax-tag">VR</span>
+            <span class="tax-name">Visual-Centric Reasoning</span>
+            <span class="tax-count">2 tasks · 391 Qs</span>
+          </div>
+          <div class="tax-list">
+            <div class="tax-item"><b>SR</b> Spatial Reasoning</div>
+            <div class="tax-item"><b>VC</b> Visual Counting</div>
+          </div>
+        </div>
+
+        <!-- AR -->
+        <div class="tax-group">
+          <div class="tax-header tax-ar">
+            <span class="tax-tag">AR</span>
+            <span class="tax-name">Audio-Centric Reasoning</span>
+            <span class="tax-count">3 tasks · 349 Qs</span>
+          </div>
+          <div class="tax-list">
+            <div class="tax-item"><b>SC</b> Speech Context</div>
+            <div class="tax-item"><b>ES</b> Environmental Sound</div>
+            <div class="tax-item"><b>BM</b> Background Music</div>
+          </div>
+        </div>
+
+        <!-- MH -->
+        <div class="tax-group">
+          <div class="tax-header tax-mh">
+            <span class="tax-tag">MH</span>
+            <span class="tax-name">Multimodal Hallucination</span>
+            <span class="tax-count">3 tasks · 625 Qs</span>
+          </div>
+          <div class="tax-list">
+            <div class="tax-item"><b>V2A</b> Visual-to-Audio Deception</div>
+            <div class="tax-item"><b>A2V</b> Audio-to-Visual Deception</div>
+            <div class="tax-item"><b>TSF</b> Temporal Splicing Fallacy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== CONSTRUCTION PIPELINE =============== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Benchmark Construction Pipeline</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+        A three-step semi-automated pipeline followed by a strict quality assurance stage.
+      </p>
+
+      <figure class="image pipeline-figure">
+        <img src="static/images/pipeline.png"
+             alt="TraceAV-Bench construction pipeline"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="pipeline-fallback" style="display:none;">
+          <i class="fas fa-image"></i>
+          <span>Place <code>static/images/pipeline.png</code> (pipeline overview figure).</span>
+        </div>
+      </figure>
+
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <h4>Visual Captioning</h4>
+          <p>Minute-level visual captioning with Qwen3-VL-32B, equipped with an <b>Entity Cache</b> for long-range identity tracking.</p>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <h4>Asynchronous A-V Fusion</h4>
+          <p>Gemini-2.5-Flash aligns 1-minute audio with visual narrative, and performs entity updates from audio evidence.</p>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <h4>Agentic QA Generation</h4>
+          <p>Event segmentation, trajectory proposal, and MCQ generation over explicit multi-hop evidence.</p>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <h4>Quality Assurance</h4>
+          <p>Multi-stage verification: blindfolded solver, deduplication, and LLM-based filtering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== LEADERBOARD =============== -->
+  <section class="section hero is-light" id="leaderboard">
+    <div class="container is-fullhd">
+      <h2 class="title is-3 has-text-centered"><i class="fas fa-trophy" style="color:#d4a017;"></i> Leaderboard</h2>
+      <p class="has-text-centered" style="margin-bottom: 1rem;">
+        Accuracy (%) on <b>12 general sub-tasks</b> across AVR / VR / AR dimensions.
+        Best per task is <b>bolded</b>, best open-source is <u>underlined</u>.
+      </p>
+
+      <!-- Filter buttons -->
+      <div class="lb-controls has-text-centered">
+        <div class="buttons is-centered">
+          <button class="button is-small lb-filter-btn is-active" data-filter="all">All</button>
+          <button class="button is-small lb-filter-btn" data-filter="closed">Closed-source OmniLLMs</button>
+          <button class="button is-small lb-filter-btn" data-filter="open">Open-source OmniLLMs</button>
+          <button class="button is-small lb-filter-btn" data-filter="single">Single-Modality MLLMs</button>
+          <button class="button is-small lb-filter-btn" data-filter="visonly">Visual-Only Ablations</button>
+        </div>
+      </div>
+
+      <div class="leaderboard-wrapper">
+        <table class="leaderboard-table" id="lb-main">
+          <thead>
+            <tr>
+              <th rowspan="2" class="lb-rank">#</th>
+              <th rowspan="2" class="lb-model">Model</th>
+              <th colspan="7" class="lb-group-avr">AVR</th>
+              <th colspan="2" class="lb-group-vr">VR</th>
+              <th colspan="3" class="lb-group-ar">AR</th>
+              <th rowspan="2" class="lb-avg">Avg</th>
+            </tr>
+            <tr>
+              <th>IR</th><th>TS</th><th>ET</th><th>FCR</th><th>BCR</th><th>CMM</th><th>SL</th>
+              <th>SR</th><th>VC</th>
+              <th>SC</th><th>ES</th><th>BM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Closed-source OmniLLMs -->
+            <tr class="lb-section" data-group="closed"><td colspan="15">Closed-source OmniLLMs (With Visual and Audio)</td></tr>
+            <tr data-group="closed">
+              <td class="lb-rank">1</td><td class="lb-model">Gemini 3.1 Pro</td>
+              <td class="best">83.57</td><td>60.82</td><td class="best">71.77</td><td class="best">86.30</td><td class="best">61.80</td><td>49.41</td><td class="best">51.54</td>
+              <td class="best">73.94</td><td class="best">41.15</td>
+              <td class="best">96.92</td><td>63.64</td><td class="best">78.63</td>
+              <td class="lb-avg best">68.29</td>
+            </tr>
+            <tr data-group="closed">
+              <td class="lb-rank">2</td><td class="lb-model">Gemini 2.5 Pro</td>
+              <td>83.57</td><td class="best">63.92</td><td>60.48</td><td>76.71</td><td>50.56</td><td class="best">54.12</td><td>48.02</td>
+              <td>68.48</td><td>39.38</td>
+              <td>83.85</td><td class="best">65.91</td><td>67.18</td>
+              <td class="lb-avg">63.52</td>
+            </tr>
+            <tr data-group="closed">
+              <td class="lb-rank">3</td><td class="lb-model">Gemini 3 Flash</td>
+              <td>82.14</td><td>53.61</td><td>65.32</td><td>83.56</td><td>59.55</td><td>49.41</td><td>29.07</td>
+              <td>73.33</td><td>36.73</td>
+              <td>86.92</td><td>61.36</td><td>66.41</td>
+              <td class="lb-avg">62.28</td>
+            </tr>
+            <tr data-group="closed">
+              <td class="lb-rank">4</td><td class="lb-model">Gemini 2.5 Flash</td>
+              <td>75.00</td><td>58.76</td><td>62.10</td><td>75.34</td><td>58.43</td><td>40.00</td><td>29.07</td>
+              <td>66.06</td><td>39.38</td>
+              <td>81.54</td><td>60.23</td><td>62.60</td>
+              <td class="lb-avg">59.04</td>
+            </tr>
+            <tr data-group="closed">
+              <td class="lb-rank">5</td><td class="lb-model">Gemini 2 Flash</td>
+              <td>66.43</td><td>53.61</td><td>58.06</td><td>64.38</td><td>43.82</td><td>41.18</td><td>25.11</td>
+              <td>54.55</td><td>27.43</td>
+              <td>70.00</td><td>55.68</td><td>58.78</td>
+              <td class="lb-avg">51.59</td>
+            </tr>
+
+            <!-- Open-source OmniLLMs -->
+            <tr class="lb-section" data-group="open"><td colspan="15">Open-source OmniLLMs (With Visual and Audio)</td></tr>
+            <tr data-group="open">
+              <td class="lb-rank">1</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td class="os-best">56.43</td><td class="os-best">53.61</td><td class="os-best">47.58</td><td class="os-best">57.53</td><td>40.45</td><td class="os-best">44.71</td><td>31.28</td>
+              <td>65.45</td><td class="os-best">39.38</td>
+              <td>63.85</td><td>56.82</td><td class="os-best">63.36</td>
+              <td class="lb-avg os-best">51.70</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">2</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td>47.14</td><td>51.55</td><td>35.48</td><td>43.84</td><td class="os-best">50.56</td><td>40.00</td><td>32.60</td>
+              <td>58.18</td><td>38.50</td>
+              <td>63.85</td><td>59.09</td><td>60.31</td>
+              <td class="lb-avg">48.43</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">3</td><td class="lb-model">OmniVinci-9B</td>
+              <td>49.29</td><td>44.33</td><td>38.71</td><td>57.53</td><td>34.83</td><td>35.29</td><td>33.48</td>
+              <td>55.15</td><td>34.51</td>
+              <td class="os-best">65.38</td><td class="best os-best">65.91</td><td>54.20</td>
+              <td class="lb-avg">47.38</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">4</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td>45.71</td><td>36.08</td><td>37.90</td><td>28.77</td><td>26.97</td><td>41.18</td><td>37.44</td>
+              <td>60.61</td><td>38.50</td>
+              <td>61.54</td><td>59.09</td><td>64.12</td>
+              <td class="lb-avg">44.83</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td>46.43</td><td>32.99</td><td>37.10</td><td>30.14</td><td>35.96</td><td>37.65</td><td class="os-best">37.44</td>
+              <td>49.70</td><td>35.40</td>
+              <td>60.00</td><td>52.27</td><td>49.62</td>
+              <td class="lb-avg">42.06</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">6</td><td class="lb-model">Gemma 4-E4B</td>
+              <td>39.29</td><td>38.14</td><td>37.10</td><td>36.99</td><td>29.21</td><td>36.47</td><td>16.74</td>
+              <td>55.15</td><td>34.07</td>
+              <td>55.38</td><td>54.55</td><td>58.02</td>
+              <td class="lb-avg">40.93</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">7</td><td class="lb-model">Video-SALMONN 2</td>
+              <td>42.14</td><td>41.24</td><td>29.03</td><td>30.14</td><td>29.21</td><td>32.94</td><td>31.28</td>
+              <td>48.48</td><td>39.38</td>
+              <td>47.69</td><td>47.73</td><td>44.27</td>
+              <td class="lb-avg">38.63</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">8</td><td class="lb-model">HumanOmni-7B</td>
+              <td>37.86</td><td>31.96</td><td>29.84</td><td>31.51</td><td>31.46</td><td>25.88</td><td>35.68</td>
+              <td>55.15</td><td>34.96</td>
+              <td>52.31</td><td>51.14</td><td>44.27</td>
+              <td class="lb-avg">38.50</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">9</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
+              <td>36.43</td><td>29.90</td><td>25.81</td><td>17.81</td><td>16.85</td><td>25.88</td><td>22.91</td>
+              <td>38.79</td><td>38.94</td>
+              <td>36.15</td><td>39.77</td><td>35.88</td>
+              <td class="lb-avg">30.43</td>
+            </tr>
+            <tr data-group="open">
+              <td class="lb-rank">10</td><td class="lb-model">Baichuan-Omni-1.5</td>
+              <td>37.14</td><td>14.43</td><td>20.97</td><td>15.07</td><td>12.36</td><td>20.00</td><td>30.40</td>
+              <td>37.58</td><td>26.99</td>
+              <td>32.31</td><td>42.05</td><td>33.59</td>
+              <td class="lb-avg">26.91</td>
+            </tr>
+
+            <!-- Single-modality MLLMs -->
+            <tr class="lb-section" data-group="single"><td colspan="15">Open-source Single-Modality MLLMs</td></tr>
+            <tr data-group="single">
+              <td class="lb-rank">1</td><td class="lb-model">Qwen3-VL-32B</td>
+              <td>44.29</td><td>39.18</td><td>32.26</td><td>38.36</td><td>38.20</td><td>34.12</td><td>16.30</td>
+              <td>67.27</td><td>39.38</td>
+              <td>46.15</td><td>48.86</td><td>48.09</td>
+              <td class="lb-avg">41.04</td>
+            </tr>
+            <tr data-group="single">
+              <td class="lb-rank">2</td><td class="lb-model">Qwen3-VL-8B</td>
+              <td>34.29</td><td>28.87</td><td>29.84</td><td>26.03</td><td>24.72</td><td>24.71</td><td>17.62</td>
+              <td>59.39</td><td>32.30</td>
+              <td>45.38</td><td>42.05</td><td>46.56</td>
+              <td class="lb-avg">34.31</td>
+            </tr>
+            <tr data-group="single">
+              <td class="lb-rank">3</td><td class="lb-model">Qwen2-Audio-7B</td>
+              <td>30.71</td><td>27.84</td><td>33.06</td><td>20.55</td><td>26.97</td><td>29.41</td><td>29.96</td>
+              <td>26.67</td><td>23.45</td>
+              <td>38.46</td><td>37.50</td><td>44.27</td>
+              <td class="lb-avg">30.74</td>
+            </tr>
+
+            <!-- Visual-only ablations -->
+            <tr class="lb-section" data-group="visonly"><td colspan="15">Open-source OmniLLMs (Visual Only)</td></tr>
+            <tr data-group="visonly">
+              <td class="lb-rank">1</td><td class="lb-model">Ming-Flash-Omni-2.0 (V-only)</td>
+              <td>37.86</td><td>35.05</td><td>32.26</td><td>45.21</td><td>31.46</td><td>27.06</td><td>19.82</td>
+              <td>54.55</td><td>38.94</td>
+              <td>43.08</td><td>47.73</td><td>49.62</td>
+              <td class="lb-avg">38.55</td>
+            </tr>
+            <tr data-group="visonly">
+              <td class="lb-rank">2</td><td class="lb-model">Qwen3-Omni-30B-A3B (V-only)</td>
+              <td>37.86</td><td>34.02</td><td>37.90</td><td>32.88</td><td>34.83</td><td>24.71</td><td>30.84</td>
+              <td>53.94</td><td>38.94</td>
+              <td>38.46</td><td>40.91</td><td>43.51</td>
+              <td class="lb-avg">37.40</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="lb-legend">
+        <b>Abbreviations.</b>
+        <b>AVR</b>: IR = Information Retrieval, TS = Temporal Sequencing, ET = Entity Tracking, FCR = Forward Causal Reasoning, BCR = Backward Causal Reasoning, CMM = Cross-Modality Matching, SL = Spatiotemporal Localization.
+        <b>VR</b>: SR = Spatial Reasoning, VC = Visual Counting.
+        <b>AR</b>: SC = Speech Context, ES = Environmental Sound, BM = Background Music.
+      </p>
+
+      <!-- Hallucination leaderboard -->
+      <h3 class="title is-4 has-text-centered" style="margin-top:3rem;">Hallucination Robustness (MH Dimension)</h3>
+      <p class="has-text-centered" style="margin-bottom: 1rem;">
+        Models are sorted by MH&nbsp;Avg within each group.
+        <b>Rank (MH&rarr;Gen.)</b> reveals the decoupling between hallucination robustness and general reasoning.
+      </p>
+
+      <div class="leaderboard-wrapper">
+        <table class="leaderboard-table lb-mh">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="lb-model">Model</th>
+              <th>V2A</th>
+              <th>A2V</th>
+              <th>TSF</th>
+              <th>MH Avg</th>
+              <th>Gen. Avg</th>
+              <th>Rank (MH&rarr;Gen.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="lb-section"><td colspan="8">Closed-source OmniLLMs</td></tr>
+            <tr>
+              <td>1</td><td class="lb-model">Gemini 3.1 Pro</td>
+              <td class="best">89.57</td><td>79.91</td><td class="best">84.34</td><td class="best">84.61</td><td class="best">68.29</td><td>1 → 1</td>
+            </tr>
+            <tr>
+              <td>2</td><td class="lb-model">Gemini 3 Flash</td>
+              <td>76.52</td><td>75.55</td><td>87.35</td><td>79.81</td><td>62.28</td><td>2 → 3</td>
+            </tr>
+            <tr>
+              <td>3</td><td class="lb-model">Gemini 2 Flash</td>
+              <td>74.78</td><td class="best">81.66</td><td>77.11</td><td>77.85</td><td>51.59</td><td>3 → 5</td>
+            </tr>
+            <tr>
+              <td>4</td><td class="lb-model">Gemini 2.5 Pro</td>
+              <td>79.13</td><td>74.24</td><td>75.90</td><td>76.42</td><td>63.52</td><td>4 → 2</td>
+            </tr>
+            <tr>
+              <td>5</td><td class="lb-model">Gemini 2.5 Flash</td>
+              <td>60.87</td><td>66.81</td><td>66.87</td><td>64.85</td><td>59.04</td><td>5 → 4</td>
+            </tr>
+
+            <tr class="lb-section"><td colspan="8">Open-source OmniLLMs</td></tr>
+            <tr>
+              <td>1</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td>65.65</td><td>69.87</td><td class="os-best">66.87</td><td class="os-best">67.46</td><td>48.43</td><td>1 → 2</td>
+            </tr>
+            <tr>
+              <td>2</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td class="os-best">51.70</td><td>2 → 1</td>
+            </tr>
+            <tr>
+              <td>3</td><td class="lb-model">Gemma 4-E4B</td>
+              <td class="os-best">74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td><td>3 → 6</td>
+            </tr>
+            <tr>
+              <td>4</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td>70.87</td><td class="os-best">72.05</td><td>56.63</td><td>66.52</td><td>44.83</td><td>4 → 4</td>
+            </tr>
+            <tr>
+              <td>5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td>60.43</td><td>55.46</td><td>53.61</td><td>56.50</td><td>42.06</td><td>5 → 5</td>
+            </tr>
+            <tr>
+              <td>6</td><td class="lb-model">OmniVinci-9B</td>
+              <td>42.17</td><td>44.10</td><td>42.17</td><td>42.81</td><td>47.38</td><td>6 → 3</td>
+            </tr>
+            <tr>
+              <td>7</td><td class="lb-model">Video-SALMONN 2</td>
+              <td>45.65</td><td>39.30</td><td>37.95</td><td>40.97</td><td>38.63</td><td>7 → 7</td>
+            </tr>
+            <tr>
+              <td>8</td><td class="lb-model">HumanOmni-7B</td>
+              <td>33.91</td><td>37.99</td><td>28.31</td><td>33.40</td><td>38.50</td><td>8 → 8</td>
+            </tr>
+            <tr>
+              <td>9</td><td class="lb-model">Baichuan-Omni-1.5</td>
+              <td>28.26</td><td>41.48</td><td>22.29</td><td>30.68</td><td>26.91</td><td>9 → 10</td>
+            </tr>
+            <tr>
+              <td>10</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
+              <td>35.22</td><td>29.69</td><td>19.88</td><td>28.26</td><td>30.43</td><td>10 → 9</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="lb-note has-text-centered">
+        <i class="fas fa-info-circle"></i>
+        To submit your model to the leaderboard, please open an issue or PR at our
+        <a href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">GitHub repository</a>
+        with your evaluation results.
+      </p>
+    </div>
+  </section>
+
+  <!-- =============== DATA FORMAT / DOWNLOAD =============== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Data &amp; Usage</h2>
+
+      <div class="content">
+        <h4>1. Clone the repository</h4>
+        <pre><code class="language-bash">git clone https://github.com/Heinz217/TraceAV-Bench.git
+cd TraceAV-Bench</code></pre>
+
+        <h4>2. Download source videos</h4>
+        <p>
+          Each video id in <code>data/*.json</code> is resolved through
+          <code>data/video_name_mapping.json</code>. Videos are either from
+          <a href="https://github.com/NJU-LINK/OmniVideoBench" target="_blank">OmniVideoBench</a>
+          or fetched directly from YouTube via <code>https://www.youtube.com/watch?v=&lt;id&gt;</code>.
+          Save them as <code>&lt;video_id&gt;.mp4</code> under a flat directory (e.g. <code>~/traceav_videos/</code>).
+        </p>
+
+        <h4>3. Data format</h4>
+<pre><code class="language-json">{
+  "task_type": "v_visual_counting",
+  "video_count": 219,
+  "question_count": 226,
+  "items": [
+    {
+      "question_id": 1,
+      "video_id": "video2",
+      "question": "...",
+      "options": {"A": "...", "B": "...", "C": "...", "D": "..."},
+      "question_type": "single",           // "single" | "multiple"
+      "correct_options": ["C"],
+      "answer_text": "...",
+      "minute_hop_count": 40,              // temporal span (minutes)
+      "hop_length_label": "long",          // "short" | "medium" | "long"
+      "trajectory_with_timestamps": [
+        {
+          "event_id": 6,
+          "evidence": "...",
+          "label": "visual",               // "visual" | "audio" | "audio-visual"
+          "reason": "...",
+          "timestamp_minute": 42,
+          "event_time_range": {"start_minute": 41, "end_minute": 44}
+        }
+      ],
+      "difficulty": "medium"               // "easy" | "medium" | "hard"
+    }
+  ]
+}</code></pre>
+
+        <h4>4. Evaluate a model</h4>
+<pre><code class="language-bash"># Example 1: evaluate Gemini via remote API
+export BENCHMARK_DIR=$(pwd)/data
+export GEMINI_API_KEY=&lt;your_key&gt;
+bash eval/gemini/eval_gemini.sh
+
+# Example 2: evaluate a local Qwen3-VL checkpoint
+export QWEN3VL_MODEL_PATH=/path/to/Qwen3-VL-32B-Instruct
+export QWEN3VL_CLEANED_DIR=$(pwd)/data
+export QWEN3VL_VIDEOS_DIR=/path/to/videos
+bash eval/qwen3_vl/eval_qwen3_vl.sh
+
+# Example 3: evaluate an OpenAI-compatible vLLM server
+export BENCHMARK_DIR=$(pwd)/data
+export LVBENCH_BASE_URL=http://127.0.0.1:8000
+bash eval/qwen3_omni_instruct/eval_qwen3_omni_instruct.sh</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== BIBTEX =============== -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{feng2026traceavbench,
+  title   = {TraceAV-Bench: Benchmarking Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos},
+  author  = {Feng, Hengyi and Liang, Hao and Chen, Mingrui and Zeng, Bohan and Qiang, Meiyi and
+             Zhao, Zhengyang and Meng, Zimo and Sheng, Zeang and Zhang, Wentao},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+              adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              Licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> License.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  </main>
+</body>
+</html>
