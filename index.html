@@ -81,7 +81,16 @@
   <nav class="tav-navbar" aria-label="Primary">
     <div class="tav-nav-inner">
       <a class="tav-nav-brand" href="#top">
-        <span class="tav-nav-logo">T</span>
+        <span class="tav-nav-logo" aria-hidden="true">
+          <!-- Multi-hop trajectory icon (dot → dot → dot) -->
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 22 C 9 10, 14 10, 16 16 S 23 22, 28 10" opacity="0.75"/>
+            <circle cx="4"  cy="22" r="2.6" fill="currentColor" stroke="none"/>
+            <circle cx="16" cy="16" r="2.6" fill="#B08A3E" stroke="none"/>
+            <circle cx="28" cy="10" r="2.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
         TraceAV-Bench
       </a>
       <button class="tav-nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
@@ -90,9 +99,9 @@
       <div class="tav-nav-links" id="tav-nav-links">
         <a href="#abstract">Abstract</a>
         <a href="#taxonomy">Tasks</a>
+        <a href="#stats">Statistics</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#leaderboard">Leaderboard</a>
-        <a href="#findings">Findings</a>
         <a href="#data">Data</a>
         <a href="#BibTeX">BibTeX</a>
         <a class="nav-cta" href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">
@@ -103,7 +112,7 @@
   </nav>
 
   <!-- =============== HERO =============== -->
-  <section class="hero" id="top">
+  <section class="hero tav-hero" id="top">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -392,17 +401,52 @@
       <h2 class="title is-3 has-text-centered">Dataset Statistics</h2>
       <p class="has-text-centered" style="margin-bottom: 1.5rem;">
         578 long videos (339.5 h) spanning 5 top-level genres and 30+ sub-genres,
-        with durations overwhelmingly beyond 10 minutes.
+        with 2,200 questions grounded in multi-hop audio-visual trajectories.
       </p>
 
+      <!-- Overview stats (from appendix Table 2: Overview statistics) -->
+      <div class="overview-triple">
+        <div class="overview-block">
+          <h4>Video Corpus</h4>
+          <dl>
+            <dt>Total videos</dt>         <dd>578</dd>
+            <dt>Total duration</dt>       <dd>339.5 hrs</dd>
+            <dt>Duration range</dt>       <dd>10.1 – 139.9 min</dd>
+            <dt>Avg. duration</dt>        <dd>35.2 min</dd>
+            <dt>Resolution ≥ 720p</dt>    <dd>73.7%</dd>
+          </dl>
+        </div>
+        <div class="overview-block">
+          <h4>Question Pool</h4>
+          <dl>
+            <dt>Total questions</dt>      <dd>2,200</dd>
+            <dt>Single-choice</dt>        <dd>1,848 (84.0%)</dd>
+            <dt>Multi-choice</dt>         <dd>352 (16.0%)</dd>
+            <dt>Avg. question length</dt> <dd>43.6 words</dd>
+            <dt>Avg. option length</dt>   <dd>22.1 words</dd>
+          </dl>
+        </div>
+        <div class="overview-block">
+          <h4>Reasoning Trajectories</h4>
+          <dl>
+            <dt>Evaluation dimensions</dt><dd>4</dd>
+            <dt>Sub-tasks</dt>            <dd>15</dd>
+            <dt>Avg. hop count</dt>       <dd>3.68</dd>
+            <dt>Avg. temporal span</dt>   <dd>15.1 min</dd>
+            <dt>Modality coverage</dt>    <dd>audio + visual</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Stacked figures: sunburst (square) then duration histogram -->
       <div class="stats-grid">
-        <figure class="stats-figure">
+        <figure class="stats-figure is-square">
           <img src="asset/sunburst.png" alt="Video category distribution (sunburst chart)" />
           <figcaption>
-            <b>Video category distribution.</b> Our corpus covers 5 top-level genres
-            — Knowledge &amp; Information, Lifestyle &amp; Leisure, Film &amp; TV,
-            Sports, and Arts &amp; Performance — with 30+ fine-grained sub-genres
-            ensuring broad topical diversity.
+            <b>Video category distribution.</b> Our corpus covers 5 top-level genres —
+            Knowledge &amp; Information, Lifestyle &amp; Leisure, Film &amp; TV,
+            Sports Competition, and Artistic Performance — with 30+ fine-grained
+            sub-genres ensuring broad topical diversity.
           </figcaption>
         </figure>
         <figure class="stats-figure">
@@ -413,6 +457,55 @@
             demonstrating TraceAV-Bench's ultra-long-form nature.
           </figcaption>
         </figure>
+      </div>
+
+      <!-- Per-sub-task stats (from appendix Table 3) -->
+      <div class="stats-section-block">
+        <h3 class="stats-subheading">Per-Sub-Task Statistics</h3>
+        <p class="stats-subcaption">
+          <b>Hops</b>: mean number of evidence hops per question.
+          <b>Span</b>: mean temporal gap, in minutes, between the first and last evidence hop.
+          <b>M-ch</b>: number of multi-choice items.
+        </p>
+        <div class="stats-table-wrapper">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Dim.</th>
+                <th class="left" style="text-align:left;">Sub-task</th>
+                <th>#Q</th>
+                <th>%</th>
+                <th>Hops</th>
+                <th>Span (min)</th>
+                <th>M-ch</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="dim-cell" rowspan="7">AVR</td><td class="left">Information Retrieval (IR)</td>     <td>140</td><td>6.4</td> <td>2.87</td><td>13.5</td><td>9</td></tr>
+              <tr><td class="left">Temporal Sequencing (TS)</td>       <td>97</td> <td>4.4</td> <td>3.99</td><td>15.2</td><td>14</td></tr>
+              <tr><td class="left">Entity Tracking (ET)</td>           <td>124</td><td>5.6</td> <td>4.19</td><td>18.3</td><td>43</td></tr>
+              <tr><td class="left">Forward Causal Reasoning (FCR)</td> <td>73</td> <td>3.3</td> <td>3.11</td><td>10.1</td><td>14</td></tr>
+              <tr><td class="left">Backward Causal Reasoning (BCR)</td><td>89</td> <td>4.0</td> <td>3.53</td><td>14.1</td><td>44</td></tr>
+              <tr><td class="left">Cross-Modality Matching (CMM)</td>  <td>85</td> <td>3.9</td> <td>3.80</td><td>19.3</td><td>22</td></tr>
+              <tr><td class="left">Spatiotemporal Localization (SL)</td><td>227</td><td>10.3</td><td>3.40</td><td>12.1</td><td>13</td></tr>
+
+              <tr><td class="dim-cell" rowspan="2">VR</td><td class="left">Spatial Reasoning (SR)</td>           <td>165</td><td>7.5</td> <td>3.38</td><td>14.6</td><td>0</td></tr>
+              <tr><td class="left">Visual Counting (VC)</td>           <td>226</td><td>10.3</td><td>4.24</td><td>14.4</td><td>11</td></tr>
+
+              <tr><td class="dim-cell" rowspan="3">AR</td><td class="left">Speech Context (SC)</td>              <td>130</td><td>5.9</td> <td>3.22</td><td>15.7</td><td>23</td></tr>
+              <tr><td class="left">Environmental Sound (ES)</td>       <td>88</td> <td>4.0</td> <td>3.41</td><td>11.8</td><td>22</td></tr>
+              <tr><td class="left">Background Music (BM)</td>          <td>131</td><td>6.0</td> <td>3.68</td><td>17.4</td><td>30</td></tr>
+
+              <tr><td class="dim-cell" rowspan="3">MH</td><td class="left">Visual-to-Audio Deception (V2A)</td>  <td>230</td><td>10.5</td><td>3.60</td><td>14.2</td><td>30</td></tr>
+              <tr><td class="left">Audio-to-Visual Deception (A2V)</td><td>229</td><td>10.4</td><td>4.00</td><td>15.9</td><td>25</td></tr>
+              <tr><td class="left">Temporal Splicing Fallacy (TSF)</td><td>166</td><td>7.5</td> <td>4.23</td><td>19.8</td><td>52</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td colspan="2" class="left" style="text-align:left;">Total</td>
+                  <td>2,200</td><td>100.0</td><td>3.68</td><td>15.1</td><td>352</td></tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -458,10 +551,10 @@
   <!-- =============== LEADERBOARD =============== -->
   <section class="section hero is-light" id="leaderboard">
     <div class="container is-fullhd">
-      <h2 class="title is-3 has-text-centered"><i class="fas fa-trophy" style="color:#d4a017;"></i> Leaderboard</h2>
+      <h2 class="title is-3 has-text-centered"><i class="fas fa-trophy" style="color:#b08a3e;"></i> Leaderboard</h2>
       <p class="has-text-centered" style="margin-bottom: 1rem;">
-        Accuracy (%) on <b>12 general sub-tasks</b> across AVR / VR / AR dimensions.
-        Best per task is <b>bolded</b>, best open-source is <u>underlined</u>.
+        Accuracy (%) on <b>12 general sub-tasks</b> across the Audio-Visual Joint Reasoning,
+        Visual-Centric Reasoning and Audio-Centric Reasoning dimensions.
       </p>
 
       <!-- Filter buttons -->
@@ -481,9 +574,9 @@
             <tr>
               <th rowspan="2" class="lb-rank">#</th>
               <th rowspan="2" class="lb-model">Model</th>
-              <th colspan="7" class="lb-group-avr">AVR</th>
-              <th colspan="2" class="lb-group-vr">VR</th>
-              <th colspan="3" class="lb-group-ar">AR</th>
+              <th colspan="7" class="lb-group-avr">Audio-Visual Joint Reasoning</th>
+              <th colspan="2" class="lb-group-vr">Visual Reasoning</th>
+              <th colspan="3" class="lb-group-ar">Audio Reasoning</th>
               <th rowspan="2" class="lb-avg">Avg</th>
             </tr>
             <tr>
@@ -497,16 +590,16 @@
             <tr class="lb-section" data-group="closed"><td colspan="15">Closed-source OmniLLMs (With Visual and Audio)</td></tr>
             <tr data-group="closed">
               <td class="lb-rank">1</td><td class="lb-model">Gemini 3.1 Pro</td>
-              <td class="best">83.57</td><td>60.82</td><td class="best">71.77</td><td class="best">86.30</td><td class="best">61.80</td><td>49.41</td><td class="best">51.54</td>
-              <td class="best">73.94</td><td class="best">41.15</td>
-              <td class="best">96.92</td><td>63.64</td><td class="best">78.63</td>
-              <td class="lb-avg best">68.29</td>
+              <td>83.57</td><td>60.82</td><td>71.77</td><td>86.30</td><td>61.80</td><td>49.41</td><td>51.54</td>
+              <td>73.94</td><td>41.15</td>
+              <td>96.92</td><td>63.64</td><td>78.63</td>
+              <td class="lb-avg">68.29</td>
             </tr>
             <tr data-group="closed">
               <td class="lb-rank">2</td><td class="lb-model">Gemini 2.5 Pro</td>
-              <td>83.57</td><td class="best">63.92</td><td>60.48</td><td>76.71</td><td>50.56</td><td class="best">54.12</td><td>48.02</td>
+              <td>83.57</td><td>63.92</td><td>60.48</td><td>76.71</td><td>50.56</td><td>54.12</td><td>48.02</td>
               <td>68.48</td><td>39.38</td>
-              <td>83.85</td><td class="best">65.91</td><td>67.18</td>
+              <td>83.85</td><td>65.91</td><td>67.18</td>
               <td class="lb-avg">63.52</td>
             </tr>
             <tr data-group="closed">
@@ -535,14 +628,14 @@
             <tr class="lb-section" data-group="open"><td colspan="15">Open-source OmniLLMs (With Visual and Audio)</td></tr>
             <tr data-group="open">
               <td class="lb-rank">1</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
-              <td class="os-best">56.43</td><td class="os-best">53.61</td><td class="os-best">47.58</td><td class="os-best">57.53</td><td>40.45</td><td class="os-best">44.71</td><td>31.28</td>
-              <td>65.45</td><td class="os-best">39.38</td>
-              <td>63.85</td><td>56.82</td><td class="os-best">63.36</td>
-              <td class="lb-avg os-best">51.70</td>
+              <td>56.43</td><td>53.61</td><td>47.58</td><td>57.53</td><td>40.45</td><td>44.71</td><td>31.28</td>
+              <td>65.45</td><td>39.38</td>
+              <td>63.85</td><td>56.82</td><td>63.36</td>
+              <td class="lb-avg">51.70</td>
             </tr>
             <tr data-group="open">
               <td class="lb-rank">2</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
-              <td>47.14</td><td>51.55</td><td>35.48</td><td>43.84</td><td class="os-best">50.56</td><td>40.00</td><td>32.60</td>
+              <td>47.14</td><td>51.55</td><td>35.48</td><td>43.84</td><td>50.56</td><td>40.00</td><td>32.60</td>
               <td>58.18</td><td>38.50</td>
               <td>63.85</td><td>59.09</td><td>60.31</td>
               <td class="lb-avg">48.43</td>
@@ -551,7 +644,7 @@
               <td class="lb-rank">3</td><td class="lb-model">OmniVinci-9B</td>
               <td>49.29</td><td>44.33</td><td>38.71</td><td>57.53</td><td>34.83</td><td>35.29</td><td>33.48</td>
               <td>55.15</td><td>34.51</td>
-              <td class="os-best">65.38</td><td class="best os-best">65.91</td><td>54.20</td>
+              <td>65.38</td><td>65.91</td><td>54.20</td>
               <td class="lb-avg">47.38</td>
             </tr>
             <tr data-group="open">
@@ -563,7 +656,7 @@
             </tr>
             <tr data-group="open">
               <td class="lb-rank">5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
-              <td>46.43</td><td>32.99</td><td>37.10</td><td>30.14</td><td>35.96</td><td>37.65</td><td class="os-best">37.44</td>
+              <td>46.43</td><td>32.99</td><td>37.10</td><td>30.14</td><td>35.96</td><td>37.65</td><td>37.44</td>
               <td>49.70</td><td>35.40</td>
               <td>60.00</td><td>52.27</td><td>49.62</td>
               <td class="lb-avg">42.06</td>
@@ -650,9 +743,11 @@
 
       <p class="lb-legend">
         <b>Abbreviations.</b>
-        <b>AVR</b>: IR = Information Retrieval, TS = Temporal Sequencing, ET = Entity Tracking, FCR = Forward Causal Reasoning, BCR = Backward Causal Reasoning, CMM = Cross-Modality Matching, SL = Spatiotemporal Localization.
-        <b>VR</b>: SR = Spatial Reasoning, VC = Visual Counting.
-        <b>AR</b>: SC = Speech Context, ES = Environmental Sound, BM = Background Music.
+        <b>Audio-Visual Joint Reasoning</b>: IR = Information Retrieval, TS = Temporal Sequencing, ET = Entity Tracking,
+        FCR = Forward Causal Reasoning, BCR = Backward Causal Reasoning, CMM = Cross-Modality Matching,
+        SL = Spatiotemporal Localization.
+        <b>Visual Reasoning</b>: SR = Spatial Reasoning, VC = Visual Counting.
+        <b>Audio Reasoning</b>: SC = Speech Context, ES = Environmental Sound, BM = Background Music.
       </p>
 
       <!-- Hallucination leaderboard -->
@@ -679,7 +774,7 @@
             <tr class="lb-section"><td colspan="7">Closed-source OmniLLMs</td></tr>
             <tr>
               <td>1</td><td class="lb-model">Gemini 3.1 Pro</td>
-              <td class="best">89.57</td><td>79.91</td><td class="best">84.34</td><td class="best">84.61</td><td class="best">68.29</td>
+              <td>89.57</td><td>79.91</td><td>84.34</td><td>84.61</td><td>68.29</td>
             </tr>
             <tr>
               <td>2</td><td class="lb-model">Gemini 3 Flash</td>
@@ -687,7 +782,7 @@
             </tr>
             <tr>
               <td>3</td><td class="lb-model">Gemini 2 Flash</td>
-              <td>74.78</td><td class="best">81.66</td><td>77.11</td><td>77.85</td><td>51.59</td>
+              <td>74.78</td><td>81.66</td><td>77.11</td><td>77.85</td><td>51.59</td>
             </tr>
             <tr>
               <td>4</td><td class="lb-model">Gemini 2.5 Pro</td>
@@ -701,19 +796,19 @@
             <tr class="lb-section"><td colspan="7">Open-source OmniLLMs</td></tr>
             <tr>
               <td>1</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
-              <td>65.65</td><td>69.87</td><td class="os-best">66.87</td><td class="os-best">67.46</td><td>48.43</td>
+              <td>65.65</td><td>69.87</td><td>66.87</td><td>67.46</td><td>48.43</td>
             </tr>
             <tr>
               <td>2</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
-              <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td class="os-best">51.70</td>
+              <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td>51.70</td>
             </tr>
             <tr>
               <td>3</td><td class="lb-model">Gemma 4-E4B</td>
-              <td class="os-best">74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td>
+              <td>74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td>
             </tr>
             <tr>
               <td>4</td><td class="lb-model">MiniCPM-o 4.5</td>
-              <td>70.87</td><td class="os-best">72.05</td><td>56.63</td><td>66.52</td><td>44.83</td>
+              <td>70.87</td><td>72.05</td><td>56.63</td><td>66.52</td><td>44.83</td>
             </tr>
             <tr>
               <td>5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
@@ -749,50 +844,6 @@
         <a href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">GitHub repository</a>
         with your evaluation results.
       </p>
-    </div>
-  </section>
-
-  <!-- =============== KEY FINDINGS =============== -->
-  <section class="section" id="findings">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Key Findings</h2>
-      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
-        Fine-grained analyses on TraceAV-Bench reveal persistent failure patterns of current OmniLLMs
-        along reasoning depth, evidence position, and cross-modal reliability.
-      </p>
-
-      <figure class="image findings-figure">
-        <img src="asset/findings.png"
-             alt="TraceAV-Bench key findings: hop degradation, primacy bias, error entropy, and MH vs Gen correlation" />
-      </figure>
-
-      <div class="findings-grid">
-        <div class="finding-card">
-          <div class="finding-tag">(a)</div>
-          <h4>Multi-hop degradation</h4>
-          <p>Accuracy drops consistently as the required reasoning trajectory lengthens
-            (<b>2–4 hops → 5+ hops</b>), with only the strongest models maintaining small gaps.</p>
-        </div>
-        <div class="finding-card">
-          <div class="finding-tag">(b)</div>
-          <h4>Primacy bias</h4>
-          <p>Models are systematically more accurate when the first evidence hop lies
-            early (0–20%) in the video than late (≥40%) — a <b>+3.7~+18.3%</b> gap across all models.</p>
-        </div>
-        <div class="finding-card">
-          <div class="finding-tag">(c)</div>
-          <h4>Error-entropy scaling</h4>
-          <p>Error distributions converge as comprehension accuracy grows
-            (<b>Pearson r = 0.726</b>): weaker models fail in diverse ways,
-            stronger models fail on a shared set of hard questions.</p>
-        </div>
-        <div class="finding-card">
-          <div class="finding-tag">(d)</div>
-          <h4>MH ⟂ comprehension</h4>
-          <p>Per-model correlation between hallucination robustness and general reasoning is
-            near zero — <b>MH robustness is largely decoupled</b> from general multimodal ability.</p>
-        </div>
-      </div>
     </div>
   </section>
 
