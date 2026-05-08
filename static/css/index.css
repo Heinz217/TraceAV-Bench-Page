@@ -324,9 +324,9 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 64px;
   height: 3px;
-  background: var(--gradient-accent);
+  background: linear-gradient(90deg, #B08A3E 0%, #D4B968 50%, #B08A3E 100%);
   border-radius: 2px;
 }
 

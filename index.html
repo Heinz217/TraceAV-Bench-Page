@@ -52,15 +52,16 @@
 
   <title>TraceAV-Bench: Multi-Hop Trajectory Reasoning over Long Audio-Visual Videos</title>
 
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="static/images/logo.svg?v=7">
+  <link rel="shortcut icon" type="image/svg+xml" href="static/images/logo.svg?v=7">
+  <link rel="apple-touch-icon" href="static/images/logo.svg?v=7">
 
   <!-- Core styles -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <link rel="stylesheet" href="static/css/traceav.css">
+  <link rel="stylesheet" href="static/css/index.css?v=7">
+  <link rel="stylesheet" href="static/css/traceav.css?v=7">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -82,16 +83,9 @@
     <div class="tav-nav-inner">
       <a class="tav-nav-brand" href="#top">
         <span class="tav-nav-logo" aria-hidden="true">
-          <!-- Multi-hop trajectory icon (dot → dot → dot) -->
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 22 C 9 10, 14 10, 16 16 S 23 22, 28 10" opacity="0.75"/>
-            <circle cx="4"  cy="22" r="2.6" fill="currentColor" stroke="none"/>
-            <circle cx="16" cy="16" r="2.6" fill="#B08A3E" stroke="none"/>
-            <circle cx="28" cy="10" r="2.6" fill="currentColor" stroke="none"/>
-          </svg>
+          <img src="static/images/logo.svg?v=7" alt="" width="32" height="32" />
         </span>
-        TraceAV-Bench
+        <span class="tav-nav-brandname">TraceAV-Bench</span>
       </a>
       <button class="tav-nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
         <i class="fas fa-bars"></i>
@@ -102,7 +96,7 @@
         <a href="#stats">Statistics</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#leaderboard">Leaderboard</a>
-        <a href="#data">Data</a>
+        <a href="#data">Usage</a>
         <a href="#BibTeX">BibTeX</a>
         <a class="nav-cta" href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">
           <i class="fab fa-github"></i>&nbsp;GitHub
@@ -154,16 +148,6 @@
                     title="arXiv link coming soon">
                     <span class="icon"><i class="ai ai-arxiv"></i></span>
                     <span>arXiv (coming soon)</span>
-                  </a>
-                </span>
-
-                <!-- Paper PDF (placeholder) -->
-                <span class="link-block">
-                  <a href="#" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark disabled-link"
-                    title="Paper PDF coming soon">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper (coming soon)</span>
                   </a>
                 </span>
 
@@ -334,61 +318,61 @@
 
       <div class="taxonomy">
         <!-- AVR -->
-        <div class="tax-group">
+        <div class="tax-group tax-avr">
           <div class="tax-header tax-avr">
             <span class="tax-tag">AVR</span>
             <span class="tax-name">Audio-Visual Joint Reasoning</span>
             <span class="tax-count">7 tasks · 835 Qs</span>
           </div>
           <div class="tax-list">
-            <div class="tax-item"><b>IR</b> Information Retrieval</div>
-            <div class="tax-item"><b>TS</b> Temporal Sequencing</div>
-            <div class="tax-item"><b>ET</b> Entity Tracking</div>
-            <div class="tax-item"><b>FCR</b> Forward Causal Reasoning</div>
-            <div class="tax-item"><b>BCR</b> Backward Causal Reasoning</div>
-            <div class="tax-item"><b>CMM</b> Cross-Modality Matching</div>
-            <div class="tax-item"><b>SL</b> Spatiotemporal Localization</div>
+            <div class="tax-item"><b>IR</b><span class="tax-task">Information Retrieval</span><span class="tax-q">140</span></div>
+            <div class="tax-item"><b>TS</b><span class="tax-task">Temporal Sequencing</span><span class="tax-q">97</span></div>
+            <div class="tax-item"><b>ET</b><span class="tax-task">Entity Tracking</span><span class="tax-q">124</span></div>
+            <div class="tax-item"><b>FCR</b><span class="tax-task">Forward Causal Reasoning</span><span class="tax-q">73</span></div>
+            <div class="tax-item"><b>BCR</b><span class="tax-task">Backward Causal Reasoning</span><span class="tax-q">89</span></div>
+            <div class="tax-item"><b>CMM</b><span class="tax-task">Cross-Modality Matching</span><span class="tax-q">85</span></div>
+            <div class="tax-item"><b>SL</b><span class="tax-task">Spatiotemporal Localization</span><span class="tax-q">227</span></div>
           </div>
         </div>
 
         <!-- VR -->
-        <div class="tax-group">
+        <div class="tax-group tax-vr">
           <div class="tax-header tax-vr">
             <span class="tax-tag">VR</span>
             <span class="tax-name">Visual-Centric Reasoning</span>
             <span class="tax-count">2 tasks · 391 Qs</span>
           </div>
           <div class="tax-list">
-            <div class="tax-item"><b>SR</b> Spatial Reasoning</div>
-            <div class="tax-item"><b>VC</b> Visual Counting</div>
+            <div class="tax-item"><b>SR</b><span class="tax-task">Spatial Reasoning</span><span class="tax-q">165</span></div>
+            <div class="tax-item"><b>VC</b><span class="tax-task">Visual Counting</span><span class="tax-q">226</span></div>
           </div>
         </div>
 
         <!-- AR -->
-        <div class="tax-group">
+        <div class="tax-group tax-ar">
           <div class="tax-header tax-ar">
             <span class="tax-tag">AR</span>
             <span class="tax-name">Audio-Centric Reasoning</span>
             <span class="tax-count">3 tasks · 349 Qs</span>
           </div>
           <div class="tax-list">
-            <div class="tax-item"><b>SC</b> Speech Context</div>
-            <div class="tax-item"><b>ES</b> Environmental Sound</div>
-            <div class="tax-item"><b>BM</b> Background Music</div>
+            <div class="tax-item"><b>SC</b><span class="tax-task">Speech Context</span><span class="tax-q">130</span></div>
+            <div class="tax-item"><b>ES</b><span class="tax-task">Environmental Sound</span><span class="tax-q">88</span></div>
+            <div class="tax-item"><b>BM</b><span class="tax-task">Background Music</span><span class="tax-q">131</span></div>
           </div>
         </div>
 
         <!-- MH -->
-        <div class="tax-group">
+        <div class="tax-group tax-mh">
           <div class="tax-header tax-mh">
             <span class="tax-tag">MH</span>
             <span class="tax-name">Multimodal Hallucination</span>
             <span class="tax-count">3 tasks · 625 Qs</span>
           </div>
           <div class="tax-list">
-            <div class="tax-item"><b>V2A</b> Visual-to-Audio Deception</div>
-            <div class="tax-item"><b>A2V</b> Audio-to-Visual Deception</div>
-            <div class="tax-item"><b>TSF</b> Temporal Splicing Fallacy</div>
+            <div class="tax-item"><b>V2A</b><span class="tax-task">Visual-to-Audio Deception</span><span class="tax-q">230</span></div>
+            <div class="tax-item"><b>A2V</b><span class="tax-task">Audio-to-Visual Deception</span><span class="tax-q">229</span></div>
+            <div class="tax-item"><b>TSF</b><span class="tax-task">Temporal Splicing Fallacy</span><span class="tax-q">166</span></div>
           </div>
         </div>
       </div>
@@ -462,11 +446,6 @@
       <!-- Per-sub-task stats (from appendix Table 3) -->
       <div class="stats-section-block">
         <h3 class="stats-subheading">Per-Sub-Task Statistics</h3>
-        <p class="stats-subcaption">
-          <b>Hops</b>: mean number of evidence hops per question.
-          <b>Span</b>: mean temporal gap, in minutes, between the first and last evidence hop.
-          <b>M-ch</b>: number of multi-choice items.
-        </p>
         <div class="stats-table-wrapper">
           <table class="stats-table">
             <thead>
@@ -481,7 +460,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td class="dim-cell" rowspan="7">AVR</td><td class="left">Information Retrieval (IR)</td>     <td>140</td><td>6.4</td> <td>2.87</td><td>13.5</td><td>9</td></tr>
+              <tr><td class="dim-cell dim-avr" rowspan="7">AVR</td><td class="left">Information Retrieval (IR)</td>     <td>140</td><td>6.4</td> <td>2.87</td><td>13.5</td><td>9</td></tr>
               <tr><td class="left">Temporal Sequencing (TS)</td>       <td>97</td> <td>4.4</td> <td>3.99</td><td>15.2</td><td>14</td></tr>
               <tr><td class="left">Entity Tracking (ET)</td>           <td>124</td><td>5.6</td> <td>4.19</td><td>18.3</td><td>43</td></tr>
               <tr><td class="left">Forward Causal Reasoning (FCR)</td> <td>73</td> <td>3.3</td> <td>3.11</td><td>10.1</td><td>14</td></tr>
@@ -489,14 +468,14 @@
               <tr><td class="left">Cross-Modality Matching (CMM)</td>  <td>85</td> <td>3.9</td> <td>3.80</td><td>19.3</td><td>22</td></tr>
               <tr><td class="left">Spatiotemporal Localization (SL)</td><td>227</td><td>10.3</td><td>3.40</td><td>12.1</td><td>13</td></tr>
 
-              <tr><td class="dim-cell" rowspan="2">VR</td><td class="left">Spatial Reasoning (SR)</td>           <td>165</td><td>7.5</td> <td>3.38</td><td>14.6</td><td>0</td></tr>
+              <tr><td class="dim-cell dim-vr" rowspan="2">VR</td><td class="left">Spatial Reasoning (SR)</td>           <td>165</td><td>7.5</td> <td>3.38</td><td>14.6</td><td>0</td></tr>
               <tr><td class="left">Visual Counting (VC)</td>           <td>226</td><td>10.3</td><td>4.24</td><td>14.4</td><td>11</td></tr>
 
-              <tr><td class="dim-cell" rowspan="3">AR</td><td class="left">Speech Context (SC)</td>              <td>130</td><td>5.9</td> <td>3.22</td><td>15.7</td><td>23</td></tr>
+              <tr><td class="dim-cell dim-ar" rowspan="3">AR</td><td class="left">Speech Context (SC)</td>              <td>130</td><td>5.9</td> <td>3.22</td><td>15.7</td><td>23</td></tr>
               <tr><td class="left">Environmental Sound (ES)</td>       <td>88</td> <td>4.0</td> <td>3.41</td><td>11.8</td><td>22</td></tr>
               <tr><td class="left">Background Music (BM)</td>          <td>131</td><td>6.0</td> <td>3.68</td><td>17.4</td><td>30</td></tr>
 
-              <tr><td class="dim-cell" rowspan="3">MH</td><td class="left">Visual-to-Audio Deception (V2A)</td>  <td>230</td><td>10.5</td><td>3.60</td><td>14.2</td><td>30</td></tr>
+              <tr><td class="dim-cell dim-mh" rowspan="3">MH</td><td class="left">Visual-to-Audio Deception (V2A)</td>  <td>230</td><td>10.5</td><td>3.60</td><td>14.2</td><td>30</td></tr>
               <tr><td class="left">Audio-to-Visual Deception (A2V)</td><td>229</td><td>10.4</td><td>4.00</td><td>15.9</td><td>25</td></tr>
               <tr><td class="left">Temporal Splicing Fallacy (TSF)</td><td>166</td><td>7.5</td> <td>4.23</td><td>19.8</td><td>52</td></tr>
             </tbody>
@@ -552,6 +531,8 @@
   <section class="section hero is-light" id="leaderboard">
     <div class="container is-fullhd">
       <h2 class="title is-3 has-text-centered"><i class="fas fa-trophy" style="color:#b08a3e;"></i> Leaderboard</h2>
+
+      <h3 class="title is-4 has-text-centered" style="margin-top:1rem;">General Tasks (AVR / VR / AR Dimensions)</h3>
       <p class="has-text-centered" style="margin-bottom: 1rem;">
         Accuracy (%) on <b>12 general sub-tasks</b> across the Audio-Visual Joint Reasoning,
         Visual-Centric Reasoning and Audio-Centric Reasoning dimensions.
@@ -574,6 +555,7 @@
             <tr>
               <th rowspan="2" class="lb-rank">#</th>
               <th rowspan="2" class="lb-model">Model</th>
+              <th rowspan="2" class="lb-modality">Modality</th>
               <th colspan="7" class="lb-group-avr">Audio-Visual Joint Reasoning</th>
               <th colspan="2" class="lb-group-vr">Visual Reasoning</th>
               <th colspan="3" class="lb-group-ar">Audio Reasoning</th>
@@ -586,10 +568,9 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Closed-source OmniLLMs -->
-            <tr class="lb-section" data-group="closed"><td colspan="15">Closed-source OmniLLMs (With Visual and Audio)</td></tr>
             <tr data-group="closed">
               <td class="lb-rank">1</td><td class="lb-model">Gemini 3.1 Pro</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>83.57</td><td>60.82</td><td>71.77</td><td>86.30</td><td>61.80</td><td>49.41</td><td>51.54</td>
               <td>73.94</td><td>41.15</td>
               <td>96.92</td><td>63.64</td><td>78.63</td>
@@ -597,6 +578,7 @@
             </tr>
             <tr data-group="closed">
               <td class="lb-rank">2</td><td class="lb-model">Gemini 2.5 Pro</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>83.57</td><td>63.92</td><td>60.48</td><td>76.71</td><td>50.56</td><td>54.12</td><td>48.02</td>
               <td>68.48</td><td>39.38</td>
               <td>83.85</td><td>65.91</td><td>67.18</td>
@@ -604,6 +586,7 @@
             </tr>
             <tr data-group="closed">
               <td class="lb-rank">3</td><td class="lb-model">Gemini 3 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>82.14</td><td>53.61</td><td>65.32</td><td>83.56</td><td>59.55</td><td>49.41</td><td>29.07</td>
               <td>73.33</td><td>36.73</td>
               <td>86.92</td><td>61.36</td><td>66.41</td>
@@ -611,131 +594,139 @@
             </tr>
             <tr data-group="closed">
               <td class="lb-rank">4</td><td class="lb-model">Gemini 2.5 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>75.00</td><td>58.76</td><td>62.10</td><td>75.34</td><td>58.43</td><td>40.00</td><td>29.07</td>
               <td>66.06</td><td>39.38</td>
               <td>81.54</td><td>60.23</td><td>62.60</td>
               <td class="lb-avg">59.04</td>
             </tr>
-            <tr data-group="closed">
-              <td class="lb-rank">5</td><td class="lb-model">Gemini 2 Flash</td>
-              <td>66.43</td><td>53.61</td><td>58.06</td><td>64.38</td><td>43.82</td><td>41.18</td><td>25.11</td>
-              <td>54.55</td><td>27.43</td>
-              <td>70.00</td><td>55.68</td><td>58.78</td>
-              <td class="lb-avg">51.59</td>
-            </tr>
-
-            <!-- Open-source OmniLLMs -->
-            <tr class="lb-section" data-group="open"><td colspan="15">Open-source OmniLLMs (With Visual and Audio)</td></tr>
             <tr data-group="open">
-              <td class="lb-rank">1</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td class="lb-rank">5</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>56.43</td><td>53.61</td><td>47.58</td><td>57.53</td><td>40.45</td><td>44.71</td><td>31.28</td>
               <td>65.45</td><td>39.38</td>
               <td>63.85</td><td>56.82</td><td>63.36</td>
               <td class="lb-avg">51.70</td>
             </tr>
+            <tr data-group="closed">
+              <td class="lb-rank">6</td><td class="lb-model">Gemini 2 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
+              <td>66.43</td><td>53.61</td><td>58.06</td><td>64.38</td><td>43.82</td><td>41.18</td><td>25.11</td>
+              <td>54.55</td><td>27.43</td>
+              <td>70.00</td><td>55.68</td><td>58.78</td>
+              <td class="lb-avg">51.59</td>
+            </tr>
             <tr data-group="open">
-              <td class="lb-rank">2</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td class="lb-rank">7</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>47.14</td><td>51.55</td><td>35.48</td><td>43.84</td><td>50.56</td><td>40.00</td><td>32.60</td>
               <td>58.18</td><td>38.50</td>
               <td>63.85</td><td>59.09</td><td>60.31</td>
               <td class="lb-avg">48.43</td>
             </tr>
             <tr data-group="open">
-              <td class="lb-rank">3</td><td class="lb-model">OmniVinci-9B</td>
+              <td class="lb-rank">8</td><td class="lb-model">OmniVinci-9B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>49.29</td><td>44.33</td><td>38.71</td><td>57.53</td><td>34.83</td><td>35.29</td><td>33.48</td>
               <td>55.15</td><td>34.51</td>
               <td>65.38</td><td>65.91</td><td>54.20</td>
               <td class="lb-avg">47.38</td>
             </tr>
             <tr data-group="open">
-              <td class="lb-rank">4</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td class="lb-rank">9</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>45.71</td><td>36.08</td><td>37.90</td><td>28.77</td><td>26.97</td><td>41.18</td><td>37.44</td>
               <td>60.61</td><td>38.50</td>
               <td>61.54</td><td>59.09</td><td>64.12</td>
               <td class="lb-avg">44.83</td>
             </tr>
             <tr data-group="open">
-              <td class="lb-rank">5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td class="lb-rank">10</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>46.43</td><td>32.99</td><td>37.10</td><td>30.14</td><td>35.96</td><td>37.65</td><td>37.44</td>
               <td>49.70</td><td>35.40</td>
               <td>60.00</td><td>52.27</td><td>49.62</td>
               <td class="lb-avg">42.06</td>
             </tr>
+            <tr data-group="single">
+              <td class="lb-rank">11</td><td class="lb-model">Qwen3-VL-32B</td>
+              <td class="lb-modality"><span class="modality-badge modality-v">V</span></td>
+              <td>44.29</td><td>39.18</td><td>32.26</td><td>38.36</td><td>38.20</td><td>34.12</td><td>16.30</td>
+              <td>67.27</td><td>39.38</td>
+              <td>46.15</td><td>48.86</td><td>48.09</td>
+              <td class="lb-avg">41.04</td>
+            </tr>
             <tr data-group="open">
-              <td class="lb-rank">6</td><td class="lb-model">Gemma 4-E4B</td>
+              <td class="lb-rank">12</td><td class="lb-model">Gemma 4-E4B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>39.29</td><td>38.14</td><td>37.10</td><td>36.99</td><td>29.21</td><td>36.47</td><td>16.74</td>
               <td>55.15</td><td>34.07</td>
               <td>55.38</td><td>54.55</td><td>58.02</td>
               <td class="lb-avg">40.93</td>
             </tr>
             <tr data-group="open">
-              <td class="lb-rank">7</td><td class="lb-model">Video-SALMONN 2</td>
+              <td class="lb-rank">13</td><td class="lb-model">Video-SALMONN 2</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>42.14</td><td>41.24</td><td>29.03</td><td>30.14</td><td>29.21</td><td>32.94</td><td>31.28</td>
               <td>48.48</td><td>39.38</td>
               <td>47.69</td><td>47.73</td><td>44.27</td>
               <td class="lb-avg">38.63</td>
             </tr>
+            <tr data-group="visonly">
+              <td class="lb-rank">14</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td class="lb-modality"><span class="modality-badge modality-v">V</span></td>
+              <td>37.86</td><td>35.05</td><td>32.26</td><td>45.21</td><td>31.46</td><td>27.06</td><td>19.82</td>
+              <td>54.55</td><td>38.94</td>
+              <td>43.08</td><td>47.73</td><td>49.62</td>
+              <td class="lb-avg">38.55</td>
+            </tr>
             <tr data-group="open">
-              <td class="lb-rank">8</td><td class="lb-model">HumanOmni-7B</td>
+              <td class="lb-rank">15</td><td class="lb-model">HumanOmni-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>37.86</td><td>31.96</td><td>29.84</td><td>31.51</td><td>31.46</td><td>25.88</td><td>35.68</td>
               <td>55.15</td><td>34.96</td>
               <td>52.31</td><td>51.14</td><td>44.27</td>
               <td class="lb-avg">38.50</td>
             </tr>
-            <tr data-group="open">
-              <td class="lb-rank">9</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
-              <td>36.43</td><td>29.90</td><td>25.81</td><td>17.81</td><td>16.85</td><td>25.88</td><td>22.91</td>
-              <td>38.79</td><td>38.94</td>
-              <td>36.15</td><td>39.77</td><td>35.88</td>
-              <td class="lb-avg">30.43</td>
-            </tr>
-            <tr data-group="open">
-              <td class="lb-rank">10</td><td class="lb-model">Baichuan-Omni-1.5</td>
-              <td>37.14</td><td>14.43</td><td>20.97</td><td>15.07</td><td>12.36</td><td>20.00</td><td>30.40</td>
-              <td>37.58</td><td>26.99</td>
-              <td>32.31</td><td>42.05</td><td>33.59</td>
-              <td class="lb-avg">26.91</td>
-            </tr>
-
-            <!-- Single-modality MLLMs -->
-            <tr class="lb-section" data-group="single"><td colspan="15">Open-source Single-Modality MLLMs</td></tr>
-            <tr data-group="single">
-              <td class="lb-rank">1</td><td class="lb-model">Qwen3-VL-32B</td>
-              <td>44.29</td><td>39.18</td><td>32.26</td><td>38.36</td><td>38.20</td><td>34.12</td><td>16.30</td>
-              <td>67.27</td><td>39.38</td>
-              <td>46.15</td><td>48.86</td><td>48.09</td>
-              <td class="lb-avg">41.04</td>
+            <tr data-group="visonly">
+              <td class="lb-rank">16</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td class="lb-modality"><span class="modality-badge modality-v">V</span></td>
+              <td>37.86</td><td>34.02</td><td>37.90</td><td>32.88</td><td>34.83</td><td>24.71</td><td>30.84</td>
+              <td>53.94</td><td>38.94</td>
+              <td>38.46</td><td>40.91</td><td>43.51</td>
+              <td class="lb-avg">37.40</td>
             </tr>
             <tr data-group="single">
-              <td class="lb-rank">2</td><td class="lb-model">Qwen3-VL-8B</td>
+              <td class="lb-rank">17</td><td class="lb-model">Qwen3-VL-8B</td>
+              <td class="lb-modality"><span class="modality-badge modality-v">V</span></td>
               <td>34.29</td><td>28.87</td><td>29.84</td><td>26.03</td><td>24.72</td><td>24.71</td><td>17.62</td>
               <td>59.39</td><td>32.30</td>
               <td>45.38</td><td>42.05</td><td>46.56</td>
               <td class="lb-avg">34.31</td>
             </tr>
             <tr data-group="single">
-              <td class="lb-rank">3</td><td class="lb-model">Qwen2-Audio-7B</td>
+              <td class="lb-rank">18</td><td class="lb-model">Qwen2-Audio-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-a">A</span></td>
               <td>30.71</td><td>27.84</td><td>33.06</td><td>20.55</td><td>26.97</td><td>29.41</td><td>29.96</td>
               <td>26.67</td><td>23.45</td>
               <td>38.46</td><td>37.50</td><td>44.27</td>
               <td class="lb-avg">30.74</td>
             </tr>
-
-            <!-- Visual-only ablations -->
-            <tr class="lb-section" data-group="visonly"><td colspan="15">Open-source OmniLLMs (Visual Only)</td></tr>
-            <tr data-group="visonly">
-              <td class="lb-rank">1</td><td class="lb-model">Ming-Flash-Omni-2.0 (V-only)</td>
-              <td>37.86</td><td>35.05</td><td>32.26</td><td>45.21</td><td>31.46</td><td>27.06</td><td>19.82</td>
-              <td>54.55</td><td>38.94</td>
-              <td>43.08</td><td>47.73</td><td>49.62</td>
-              <td class="lb-avg">38.55</td>
+            <tr data-group="open">
+              <td class="lb-rank">19</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
+              <td>36.43</td><td>29.90</td><td>25.81</td><td>17.81</td><td>16.85</td><td>25.88</td><td>22.91</td>
+              <td>38.79</td><td>38.94</td>
+              <td>36.15</td><td>39.77</td><td>35.88</td>
+              <td class="lb-avg">30.43</td>
             </tr>
-            <tr data-group="visonly">
-              <td class="lb-rank">2</td><td class="lb-model">Qwen3-Omni-30B-A3B (V-only)</td>
-              <td>37.86</td><td>34.02</td><td>37.90</td><td>32.88</td><td>34.83</td><td>24.71</td><td>30.84</td>
-              <td>53.94</td><td>38.94</td>
-              <td>38.46</td><td>40.91</td><td>43.51</td>
-              <td class="lb-avg">37.40</td>
+            <tr data-group="open">
+              <td class="lb-rank">20</td><td class="lb-model">Baichuan-Omni-1.5</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
+              <td>37.14</td><td>14.43</td><td>20.97</td><td>15.07</td><td>12.36</td><td>20.00</td><td>30.40</td>
+              <td>37.58</td><td>26.99</td>
+              <td>32.31</td><td>42.05</td><td>33.59</td>
+              <td class="lb-avg">26.91</td>
             </tr>
           </tbody>
         </table>
@@ -751,18 +742,19 @@
       </p>
 
       <!-- Hallucination leaderboard -->
-      <h3 class="title is-4 has-text-centered" style="margin-top:3rem;">Hallucination Robustness (MH Dimension)</h3>
+      <h3 class="title is-4 has-text-centered" style="margin-top:3rem;">Hallucination Robustness</h3>
       <p class="has-text-centered" style="margin-bottom: 1rem;">
-        Accuracy (%) on the 3 Multimodal Hallucination sub-tasks. Models are sorted by <b>MH Avg</b>
-        within each group; <b>Gen. Avg</b> is the average accuracy on the 12 general sub-tasks above.
+        Accuracy (%) on the 3 Multimodal Hallucination sub-tasks. Models are sorted by <b>MH Avg</b>;
+        <b>Gen. Avg</b> is the average accuracy on the 12 general sub-tasks above.
       </p>
 
-      <div class="leaderboard-wrapper">
+      <div class="leaderboard-wrapper lb-mh-wrap">
         <table class="leaderboard-table lb-mh">
           <thead>
             <tr>
               <th>#</th>
               <th class="lb-model">Model</th>
+              <th class="lb-modality">Modality</th>
               <th>V2A</th>
               <th>A2V</th>
               <th>TSF</th>
@@ -771,78 +763,91 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="lb-section"><td colspan="7">Closed-source OmniLLMs</td></tr>
             <tr>
               <td>1</td><td class="lb-model">Gemini 3.1 Pro</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>89.57</td><td>79.91</td><td>84.34</td><td>84.61</td><td>68.29</td>
             </tr>
             <tr>
               <td>2</td><td class="lb-model">Gemini 3 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>76.52</td><td>75.55</td><td>87.35</td><td>79.81</td><td>62.28</td>
             </tr>
             <tr>
               <td>3</td><td class="lb-model">Gemini 2 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>74.78</td><td>81.66</td><td>77.11</td><td>77.85</td><td>51.59</td>
             </tr>
             <tr>
               <td>4</td><td class="lb-model">Gemini 2.5 Pro</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>79.13</td><td>74.24</td><td>75.90</td><td>76.42</td><td>63.52</td>
             </tr>
             <tr>
-              <td>5</td><td class="lb-model">Gemini 2.5 Flash</td>
-              <td>60.87</td><td>66.81</td><td>66.87</td><td>64.85</td><td>59.04</td>
-            </tr>
-
-            <tr class="lb-section"><td colspan="7">Open-source OmniLLMs</td></tr>
-            <tr>
-              <td>1</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td>5</td><td class="lb-model">Qwen3-Omni-30B-A3B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>65.65</td><td>69.87</td><td>66.87</td><td>67.46</td><td>48.43</td>
             </tr>
             <tr>
-              <td>2</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td>6</td><td class="lb-model">Ming-Flash-Omni-2.0</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>71.30</td><td>67.25</td><td>62.65</td><td>67.07</td><td>51.70</td>
             </tr>
             <tr>
-              <td>3</td><td class="lb-model">Gemma 4-E4B</td>
+              <td>7</td><td class="lb-model">Gemma 4-E4B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>74.35</td><td>69.43</td><td>56.02</td><td>66.60</td><td>40.93</td>
             </tr>
             <tr>
-              <td>4</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td>8</td><td class="lb-model">MiniCPM-o 4.5</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>70.87</td><td>72.05</td><td>56.63</td><td>66.52</td><td>44.83</td>
             </tr>
             <tr>
-              <td>5</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td>9</td><td class="lb-model">Gemini 2.5 Flash</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
+              <td>60.87</td><td>66.81</td><td>66.87</td><td>64.85</td><td>59.04</td>
+            </tr>
+            <tr>
+              <td>10</td><td class="lb-model">Qwen2.5-Omni-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>60.43</td><td>55.46</td><td>53.61</td><td>56.50</td><td>42.06</td>
             </tr>
             <tr>
-              <td>6</td><td class="lb-model">OmniVinci-9B</td>
+              <td>11</td><td class="lb-model">OmniVinci-9B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>42.17</td><td>44.10</td><td>42.17</td><td>42.81</td><td>47.38</td>
             </tr>
             <tr>
-              <td>7</td><td class="lb-model">Video-SALMONN 2</td>
+              <td>12</td><td class="lb-model">Video-SALMONN 2</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>45.65</td><td>39.30</td><td>37.95</td><td>40.97</td><td>38.63</td>
             </tr>
             <tr>
-              <td>8</td><td class="lb-model">HumanOmni-7B</td>
+              <td>13</td><td class="lb-model">HumanOmni-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>33.91</td><td>37.99</td><td>28.31</td><td>33.40</td><td>38.50</td>
             </tr>
             <tr>
-              <td>9</td><td class="lb-model">Baichuan-Omni-1.5</td>
+              <td>14</td><td class="lb-model">Baichuan-Omni-1.5</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>28.26</td><td>41.48</td><td>22.29</td><td>30.68</td><td>26.91</td>
             </tr>
             <tr>
-              <td>10</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
+              <td>15</td><td class="lb-model">VideoLLaMA2.1-AV-7B</td>
+              <td class="lb-modality"><span class="modality-badge modality-av">A+V</span></td>
               <td>35.22</td><td>29.69</td><td>19.88</td><td>28.26</td><td>30.43</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="lb-note has-text-centered">
-        <i class="fas fa-info-circle"></i>
-        To submit your model to the leaderboard, please open an issue or PR at our
-        <a href="https://github.com/Heinz217/TraceAV-Bench" target="_blank">GitHub repository</a>
-        with your evaluation results.
+      <p class="lb-legend" style="max-width: 760px; margin-left:auto; margin-right:auto;">
+        <b>Abbreviations.</b>
+        V2A = Visual-to-Audio Deception, A2V = Audio-to-Visual Deception,
+        TSF = Temporal Splicing Fallacy.
+        <b>MH Avg</b>: mean accuracy over the three MH sub-tasks.
+        <b>Gen. Avg</b>: mean accuracy over the 12 general sub-tasks above.
       </p>
     </div>
   </section>
