@@ -736,6 +736,51 @@ pre code { color: inherit; background: transparent; }
   border-color: #967530;
 }
 
+/* Brand-colored action buttons */
+.publication-links .button.btn-arxiv,
+.publication-links .button.btn-github,
+.publication-links .button.btn-hf {
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.publication-links .button.btn-arxiv:hover,
+.publication-links .button.btn-github:hover,
+.publication-links .button.btn-hf:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  filter: brightness(1.05);
+  color: #fff;
+}
+
+/* arXiv: signature red */
+.publication-links .button.btn-arxiv {
+  background: #B31B1B;
+}
+.publication-links .button.btn-arxiv:hover {
+  background: #C82323;
+}
+
+/* GitHub: ink black */
+.publication-links .button.btn-github {
+  background: #24292F;
+}
+.publication-links .button.btn-github:hover {
+  background: #30363D;
+}
+
+/* Hugging Face: warm yellow */
+.publication-links .button.btn-hf {
+  background: #FFD21E;
+  color: #1f2328;
+}
+.publication-links .button.btn-hf:hover {
+  background: #FFC107;
+  color: #1f2328;
+}
+
 /* =============================================================
    Stats tables (appendix: overview + per-sub-task)
    ============================================================= */
