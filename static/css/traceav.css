@@ -755,30 +755,30 @@ pre code { color: inherit; background: transparent; }
   color: #fff;
 }
 
-/* arXiv: signature red */
+/* arXiv: muted brick red */
 .publication-links .button.btn-arxiv {
-  background: #B31B1B;
+  background: #A35D5D;
 }
 .publication-links .button.btn-arxiv:hover {
-  background: #C82323;
+  background: #B16C6C;
 }
 
-/* GitHub: ink black */
+/* GitHub: soft graphite */
 .publication-links .button.btn-github {
-  background: #24292F;
+  background: #4A4F57;
 }
 .publication-links .button.btn-github:hover {
-  background: #30363D;
+  background: #5A6068;
 }
 
-/* Hugging Face: warm yellow */
+/* Hugging Face: muted sand yellow */
 .publication-links .button.btn-hf {
-  background: #FFD21E;
-  color: #1f2328;
+  background: #D9B871;
+  color: #3a2f1a;
 }
 .publication-links .button.btn-hf:hover {
-  background: #FFC107;
-  color: #1f2328;
+  background: #E2C384;
+  color: #3a2f1a;
 }
 
 /* =============================================================
